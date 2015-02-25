@@ -1,0 +1,77 @@
+<head>
+  <title>The DDP Directory</title>
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/github-fork-ribbon-css/0.1.1/gh-fork-ribbon.min.css">
+</head>
+
+<body>
+  <div class="github-fork-ribbon-wrapper right">
+    <div class="github-fork-ribbon">
+      <a href="https://github.com/parlaywithme/ddpd">Fork me on GitHub</a>
+    </div>
+  </div>
+  
+  <h1>
+    DDPD: The Distributed Data Protocol Directory
+  </h1>
+
+  <br><br>
+
+  <p>
+    <b>
+      DDPD
+    </b>
+    is a directory of public services that publish streams of data.
+  </p>
+
+  <p>
+    <a href="https://www.meteor.com/ddp">DDP</a>
+    is a simple protocol for fetching structured data from a server, and receiving live updates when that data changes.
+  </p>
+
+  <p>
+    <b>
+      To add your service,
+    </b>
+    <a href="https://github.com/parlaywithme/ddpd/blob/master/services.coffee">edit this file</a>
+    and submit a pull request.
+  </p>
+
+  <br><br>
+
+  <h2>
+    Services:
+  </h2>
+  
+  <em>
+    Total services: {{servicesCount}}
+  </em>
+
+  <hr>
+
+  {{#each services}}
+  {{> service}}
+  {{/each}}
+</body>
+
+<template name="service">
+  <h5>
+    {{name}}
+  </h5>
+
+  <p>
+    {{description}} —
+    <a href="{{repo}}">{{repo}}</a>
+  </p>
+  
+  {{#markdown}}
+     {{ddpVar}} = DDP.connect("{{ddp}}");
+     {{capitalize collection}} = new Mongo.Collection("{{collection}}",{connection: {{ddpVar}}});
+     {{ddpVar}}.subscribe("{{subscription}}");
+     {{capitalize collection}}.findOne();
+  {{/markdown}}
+
+  <code class="with-newlines">
+{{format}}
+  </code>
+</template>
+
