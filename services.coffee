@@ -1,7 +1,7 @@
 @services = [
   name: 'Bitcoin price'
   description: "Coinbase's latest buy and sell prices"
-  ddp: 'ddp+sockjs://ddp--3545-btc-price.meteor.com/sockjs'
+  ddp: 'btc-price.meteor.com'
   subscription: 'btc-price'
   collection: 'bitcoin'
   format: """
